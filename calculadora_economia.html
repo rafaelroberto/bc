@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Economia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .red {
+            color: red;
+        }
+        .blue {
+            color: blue;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .result-container {
+            margin: 20px 0;
+        }
+        .buttons-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Economia</h1>
+    <form id="economiaForm">
+        <label for="consumo">Consumo em KWh:</label>
+        <input type="number" id="consumo" name="consumo"><br><br>
+        <label for="tarifa">Tarifa com impostos (R$/KWh):</label>
+        <input type="number" step="0.01" id="tarifa" name="tarifa"><br><br>
+        <label for="tipo">Tipo de energia:</label>
+        <select id="tipo" name="tipo">
+            <option value="1">Monofásico</option>
+            <option value="2">Bifásico</option>
+            <option value="3">Trifásico</option>
+        </select><br><br>
+        <label for="desconto">Percentual de Desconto (%):</label>
+        <input type="number" id="desconto" name="desconto"><br><br>
+        <label for="iluminacao">Iluminação Pública (R$):</label>
+        <input type="number" step="0.01" id="iluminacao" name="iluminacao"><br><br>
+        <button type="button" onclick="calcularEconomia()">Calcular</button>
+    </form>
+    
+    <div class="result-container">
+        <h2>Resultados</h2>
+        <p id="resultadoAntes" class="bold red"></p>
+        <p id="resultadoDepois" class="bold blue"></p>
+        <p id="economia" class="bold"></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="bold">Valor Antes do Desconto (R$)</th>
+                    <th class="bold">Valor com Desconto (R$)</th>
+                    <th class="bold">Economia Anual (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="valorAntes" class="red"></td>
+                    <td id="valorComDesconto" class="blue"></td>
+                    <td id="economiaAnual" class="bold"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="buttons-container">
+        <button type="button" onclick="gerarPDF()">Gerar PDF</button>
+        <button type="button" onclick="enviarWhatsApp()">Enviar via WhatsApp</button>
+        <button type="button" onclick="resetarCampos()">Resetar</button>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script>
+        function calcularEconomia() {
+            var consumo = parseFloat(document.getElementById('consumo').value);
+            var tarifa = parseFloat(document.getElementById('tarifa').value);
+            var tipo = parseInt(document.getElementById('tipo').value);
+            var desconto = parseFloat(document.getElementById('desconto').value);
+            var iluminacao = parseFloat(document.getElementById('iluminacao').value);
+
+            var consumoMinimo = tipo === 1 ? 30 : tipo === 2 ? 50 : 100;
+            var consumoAposDesconto = consumo - consumoMinimo;
+
+            var valorSemDesconto = (consumo * tarifa) + iluminacao;
+            var valorComDesconto = (consumoAposDesconto * tarifa * (1 - desconto / 100)) + iluminacao;
+            var economia = valorSemDesconto - valorComDesconto;
+            var economiaAnual = economia * 12;
+
+            document.getElementById('resultadoAntes').innerText = 'Antes do Desconto (R$): ' + valorSemDesconto.toFixed(2);
+            document.getElementById('resultadoDepois').innerText = 'Após o Desconto (R$): ' + valorComDesconto.toFixed(2);
+            document.getElementById('economia').innerText = 'Economia (R$): ' + economia.toFixed(2);
+
+            document.getElementById('valorAntes').innerText = 'R$ ' + valorSemDesconto.toFixed(2);
+            document.getElementById('valorComDesconto').innerText = 'R$ ' + valorComDesconto.toFixed(2);
+            document.getElementById('economiaAnual').innerText = 'R$ ' + economiaAnual.toFixed(2);
+        }
+
+        function gerarPDF() {
+            var proposta = document.createElement('div');
+            proposta.style.width = '800px';
+            proposta.style.height = 'auto';
+            proposta.style.padding = '20px';
+            proposta.style.fontFamily = 'Arial, sans-serif';
+            proposta.style.backgroundColor = '#fff';
+            proposta.style.position = 'relative';
+            proposta.style.boxSizing = 'border-box';
+
+            var logo = new Image();
+            logo.src = 'https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png';
+            logo.style.width = '200px';
+            logo.style.display = 'block';
+            logo.style.margin = '0 auto';
+
+            var titulo = document.createElement('h1');
+            titulo.innerText = 'PROPOSTA GRUPO BC ENERGIA';
+            titulo.style.color = 'green';
+            titulo.style.textAlign = 'center';
+
+            var consumoInfo = document.createElement('p');
+            consumoInfo.innerText = 'Consumo em KWh: ' + document.getElementById('consumo').value;
+            consumoInfo.style.textAlign = 'center';
+
+            var tabelaResultados = document.createElement('table');
+            tabelaResultados.style.width = '100%';
+            tabelaResultados.style.margin = '20px 0';
+            tabelaResultados.style.borderCollapse = 'collapse';
+            tabelaResultados.innerHTML = `
+                <thead>
+                    <tr>
+                        <th class="bold">Valor Antes do Desconto (R$)</th>
+                        <th class="bold">Valor com Desconto (R$)</th>
+                        <th class="bold">Economia Anual (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="red">R$ ${document.getElementById('valorAntes').innerText}</td>
+                        <td class="blue">R$ ${document.getElementById('valorComDesconto').innerText}</td>
+                        <td class="bold">R$ ${document.getElementById('economiaAnual').innerText}</td>
+                    </tr>
+                </tbody>
+            `;
+
+            var percentualEconomia = document.createElement('p');
+            percentualEconomia.innerText = 'Percentual de Economia: ' + document.getElementById('desconto').value + '%';
+            percentualEconomia.style.textAlign = 'center';
+
+            var rodape = document.createElement('div');
+            rodape.style.width = '100%';
+            rodape.style.textAlign = 'center';
+            rodape.style.fontSize = '12px';
+            rodape.innerHTML = `
+                <p>Essa é um proposta orçamento do Grupo BC Energia. Caso esteja de acordo, solicite a proposta/contrato formal.</p>
+                <p>O valor de tarifa está de acordo com a distribuidora de energia local. www.grupobcenergia.com.br</p>
+                <p>Fale com o Grupo BC Energia: 62 3999-2050 (Whatsapp)</p>
+            `;
+
+            var imagemSolar = new Image();
+            imagemSolar.src = 'https://via.placeholder.com/150x1000'; // Substitua pelo URL correto da imagem de placa solar
+            imagemSolar.style.width = '100px';
+            imagemSolar.style.height = 'auto';
+            imagemSolar.style.position = 'absolute';
+            imagemSolar.style.right = '0';
+            imagemSolar.style.top = '0';
+
+            proposta.appendChild(logo);
+            proposta.appendChild(titulo);
+            proposta.appendChild(consumoInfo);
+            proposta.appendChild(tabelaResultados);
+            proposta.appendChild(percentualEconomia);
+            proposta.appendChild(rodape);
+            proposta.appendChild(imagemSolar);
+
+            document.body.appendChild(proposta);
+
+            html2canvas(proposta).then(canvas => {
+                var imgData = canvas.toDataURL('image/png');
+                var pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+                var imgWidth = 210;
+                var pageHeight = 297;
+                var imgHeight = canvas.height * imgWidth / canvas.width;
+                var heightLeft = imgHeight;
+
+                var position = 0;
+
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+
+                pdf.save('proposta_economia.pdf');
+                document.body.removeChild(proposta); // Remove a proposta da página após a geração
+            });
+        }
+
+        function enviarWhatsApp() {
+            var numero = prompt('Digite o número de telefone com DDD (somente números):');
+            if (numero) {
+                var consumo = parseFloat(document.getElementById('consumo').value);
+                var tarifa = parseFloat(document.getElementById('tarifa').value);
+                var tipo = parseInt(document.getElementById('tipo').value);
+                var desconto = parseFloat(document.getElementById('desconto').value);
+                var iluminacao = parseFloat(document.getElementById('iluminacao').value);
+
+                var consumoMinimo = tipo === 1 ? 30 : tipo === 2 ? 50 : 100;
+                var consumoAposDesconto = consumo - consumoMinimo;
+
+                var valorSemDesconto = (consumo * tarifa) + iluminacao;
+                var valorComDesconto = (consumoAposDesconto * tarifa * (1 - desconto / 100)) + iluminacao;
+                var economia = valorSemDesconto - valorComDesconto;
+                var economiaAnual = economia * 12;
+
+                var mensagem = `Parabéns, a sua fatura terá uma economia mensal de R$ ${economia.toFixed(2)} com um desconto de ${desconto}% e por ano você economizará R$ ${economiaAnual.toFixed(2)}. Quero solicitar o tempo de adesão agora.`;
+                var link = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensagem)}`;
+                window.open(link, '_blank');
+            }
+        }
+
+        function resetarCampos() {
+            document.getElementById('economiaForm').reset();
+            document.getElementById('resultadoAntes').innerText = '';
+            document.getElementById('resultadoDepois').innerText = '';
+            document.getElementById('economia').innerText = '';
+            document.getElementById('valorAntes').innerText = '';
+            document.getElementById('valorComDesconto').innerText = '';
+            document.getElementById('economiaAnual').innerText = '';
+        }
+    </script>
+</body>
+</html>
