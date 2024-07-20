@@ -13,7 +13,7 @@
         </header>
         <main>
             <h1>Login</h1>
-            <form action="home.html" method="GET">
+            <form id="loginForm">
                 <label for="usuario">Usuário:</label>
                 <input type="text" id="usuario" name="usuario" required>
                 <label for="senha">Senha:</label>
@@ -27,5 +27,13 @@
             <p>Email: rafael.roberto@grupobcenergia.com.br</p>
         </footer>
     </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+            const usuario = document.getElementById('usuario').value;
+            // Redireciona para home.html com o nome do usuário como parâmetro
+            window.location.href = `home.html?usuario=${encodeURIComponent(usuario)}`;
+        });
+    </script>
 </body>
 </html>
