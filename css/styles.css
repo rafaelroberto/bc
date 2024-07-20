@@ -1,68 +1,68 @@
-/* css/styles.css */
-
+/* Reset básico para garantir consistência entre navegadores */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     background-color: #f4f4f4;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+    max-width: 480px; /* Largura máxima simulando a largura de um celular */
+    margin: 0 auto;
     padding: 20px;
-    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 header {
+    text-align: center;
     margin-bottom: 20px;
 }
 
 .logo {
-    max-width: 100%;
-    height: auto;
-}
-
-main {
-    flex: 1;
+    max-width: 150px; /* Tamanho da logo adaptado para dispositivos móveis */
 }
 
 h1 {
+    font-size: 24px;
+    color: #333;
     margin-bottom: 20px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 label {
-    margin: 10px 0 5px;
+    margin-bottom: 5px;
     font-weight: bold;
+    color: #555;
 }
 
-input {
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    width: 100%;
-    max-width: 400px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
+input[type="radio"] {
+    margin-right: 10px;
+}
+
 button {
-    padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #28a745;
     color: #fff;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -70,14 +70,15 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #218838;
 }
 
 a {
-    display: block;
-    margin-top: 15px;
-    text-decoration: none;
     color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    margin-top: 10px;
 }
 
 a:hover {
@@ -85,25 +86,37 @@ a:hover {
 }
 
 footer {
+    font-size: 12px;
+    color: #999;
     text-align: center;
+    margin-top: 20px;
+}
+
+#resultado {
+    margin-top: 20px;
     padding: 10px;
-    background-color: #fff;
     border-top: 1px solid #ddd;
-    margin-top: auto;
 }
 
-footer p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #555;
+#resultado p {
+    font-size: 16px;
+    color: #333;
 }
 
-@media (max-width: 600px) {
-    .logo {
-        width: 150px;
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
     }
 
-    input, button {
-        width: 90%;
+    label,
+    input,
+    select,
+    button,
+    a {
+        font-size: 14px;
+    }
+
+    .logo {
+        max-width: 120px;
     }
 }
