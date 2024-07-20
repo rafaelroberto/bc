@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Grupo BC Energia</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fbr.linkedin.com%2Fcompany%2Fgrupobcenergia&psig=AOvVaw0BsntNS36CQWStUtMKjFkm&ust=1721518937632000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLj05PajtIcDFQAAAAAdAAAAABAJ" alt="Logo Grupo BC Energia" class="logo">
         <h1>Login</h1>
-        <form action="home.html" method="POST">
+        <form id="loginForm">
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Senha:</label>
@@ -23,5 +23,13 @@
         <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
         <p>Email: rafael.roberto@grupobcenergia.com.br</p>
     </footer>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            localStorage.setItem('username', username);
+            window.location.href = 'home.html';
+        });
+    </script>
 </body>
 </html>
