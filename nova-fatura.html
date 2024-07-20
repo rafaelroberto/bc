@@ -3,83 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Fatura - Grupo BC Energia</title>
+    <title>Adicionar Nova Fatura - Grupo BC Energia</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
-        <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
-        <h1>Nova Fatura</h1>
-        <form action="home.html" method="POST">
-            <label for="unidade-consumidora">Número da Unidade Consumidora:</label>
-            <input type="text" id="unidade-consumidora" name="unidade-consumidora" required>
-            <label for="codigo-cliente">Código do Cliente:</label>
-            <input type="text" id="codigo-cliente" name="codigo-cliente" required>
-            <label for="estado">Estado:</label>
-            <select id="estado" name="estado" required>
-                <!-- Adicione aqui todos os estados do Brasil -->
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AP">Amapá</option>
-                <option value="AM">Amazonas</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RO">Rondônia</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SP">São Paulo</option>
-                <option value="SE">Sergipe</option>
-                <option value="TO">Tocantins</option>
-            </select>
-            <label for="distribuidora">Distribuidora de Energia:</label>
-            <select id="distribuidora" name="distribuidora" required>
-                <!-- Adicione aqui as distribuidoras de energia conforme o estado -->
-            </select>
-            <div>
-                <input type="radio" id="pessoa-fisica" name="tipo-pessoa" value="fisica" required>
-                <label for="pessoa-fisica">Pessoa Física</label>
-                <input type="radio" id="pessoa-juridica" name="tipo-pessoa" value="juridica" required>
-                <label for="pessoa-juridica">Pessoa Jurídica</label>
-            </div>
-            <div id="cpf-container" style="display: none;">
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf">
-            </div>
-            <div id="cnpj-container" style="display: none;">
-                <label for="cnpj">CNPJ:</label>
-                <input type="text" id="cnpj" name="cnpj">
-            </div>
-            <button type="submit">Avançar</button>
-        </form>
-        <a href="home.html">Voltar</a>
-    </div>
-    <footer>
-        <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
-        <p>Email: rafael.roberto@grupobcenergia.com.br</p>
-    </footer>
-    <script>
-        document.querySelector('input[name="tipo-pessoa"]').addEventListener('change', function(event) {
-            if (event.target.value === 'fisica') {
-                document.getElementById('cpf-container').style.display = 'block';
-                document.getElementById('cnpj-container').style.display = 'none';
-            } else {
-                document.getElementById('cpf-container').style.display = 'none';
-                document.getElementById('cnpj-container').style.display = 'block';
-            }
-        });
-    </script
+        <header>
+            <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
+        </header>
+        <main>
+            <h1>Adicionar Nova Fatura</h1>
+            <form action="home.html" method="GET">
+                <label for="unidade">Número da Unidade Consumidora:</label>
+                <input type="text" id="unidade" name="unidade" required>
+                <label for="codigo">Código do Cliente:</label>
+                <input type="text" id="codigo" name="codigo" required>
+                <label for="distribuidora">Distribuidora de Energia:</label>
+                <select id="distribuidora" name="distribuidora" required>
+                    <option value="">Selecione</option>
+                    <!-- Adicione as distribuidoras aqui -->
+                    <option value="Eletropaulo">Eletropaulo</option>
+                    <!-- Adicione as demais distribuidoras -->
+                </select>
+                <label for="cpf-cnpj">Tipo de Documento:</label>
+                <select id="cpf-cnpj" name="cpf-cnpj" required>
+                    <option value="cpf">Pessoa Física (CPF)</option>
+                    <option value="cnpj">Pessoa Jurídica (CNPJ)</option>
+                </select>
+                <input type="text" id="documento" name="documento" placeholder="CPF ou CNPJ" required>
+                <button type="submit">Adicionar</button>
+            </form>
+            <a href="home.html">Voltar</a>
+        </main>
+        <footer>
+            <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo
