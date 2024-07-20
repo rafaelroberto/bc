@@ -1,22 +1,41 @@
 /* css/styles.css */
 
-body {
-    font-family: Arial, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #f4f4f4;
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
     flex: 1;
     padding: 20px;
     text-align: center;
 }
 
+header {
+    margin-bottom: 20px;
+}
+
 .logo {
-    width: 200px;
+    max-width: 100%;
+    height: auto;
+}
+
+main {
+    flex: 1;
+}
+
+h1 {
     margin-bottom: 20px;
 }
 
@@ -28,39 +47,63 @@ form {
 
 label {
     margin: 10px 0 5px;
+    font-weight: bold;
 }
 
-input, select, textarea {
-    margin-bottom: 15px;
+input {
     padding: 10px;
-    width: 80%;
+    margin-bottom: 15px;
+    width: 100%;
     max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 button {
     padding: 10px 20px;
-    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
 
 a {
     display: block;
-    margin-top: 10px;
+    margin-top: 15px;
     text-decoration: none;
-    color: #000;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 footer {
     text-align: center;
-    padding: 10px 0;
-    background-color: #f8f8f8;
-    border-top: 1px solid #e7e7e7;
-    position: relative;
-    width: 100%;
-    bottom: 0;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    margin-top: auto;
 }
 
 footer p {
     margin: 5px 0;
-    font-size: 12px;
+    font-size: 14px;
     color: #555;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 150px;
+    }
+
+    input, button {
+        width: 90%;
+    }
 }
