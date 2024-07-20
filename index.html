@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <header>
+        <img src="assets/images/logo.png" alt="Logo">
+    </header>
+    <main>
+        <form id="loginForm">
+            <h2>Login</h2>
+            <label for="username">Nome do Usuário</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" required>
+            
+            <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+            
+            <button type="submit">Entrar</button>
+            <a href="cadastro.html">Ainda não sou cadastrado</a>
+        </form>
+    </main>
+    <script src="assets/js/scripts.js"></script>
+</body>
+</html>
