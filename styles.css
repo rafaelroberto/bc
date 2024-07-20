@@ -1,62 +1,83 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
+
 .container {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
+    padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     text-align: center;
+    width: 300px;
 }
+
 .logo {
-    max-width: 200px;
+    width: 150px;
     margin-bottom: 20px;
 }
+
 h1 {
+    font-size: 24px;
     margin-bottom: 20px;
 }
+
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
+
 label {
-    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
+
 input {
     padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
+    border-radius: 4px;
 }
+
 button {
     padding: 10px;
-    font-size: 16px;
-    background-color: #28a745;
+    background-color: #007BFF;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
 }
+
 button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
+
 a {
     display: block;
-    margin-top: 20px;
-    color: #007bff;
+    margin-top: 15px;
+    color: #007BFF;
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
+
 footer {
-    text-align: center;
+    margin-top: 20px;
     font-size: 12px;
-    margin-top: 50px;
+    color: #777;
 }
