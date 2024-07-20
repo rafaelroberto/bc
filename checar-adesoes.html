@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checar Adesões - Grupo BC Energia</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
+        <h1>Unidades Consumidoras Cadastradas</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Unidade</th>
+                    <th>Estado</th>
+                    <th>Distribuidora</th>
+                    <th>Quantidade kWh</th>
+                    <th>Percentual Desconto</th>
+                    <th>Data de Assinatura</th>
+                    <th>Vigência</th>
+                    <th>Status</th>
+                    <th>Selecionar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>SP</td>
+                    <td>Distribuidora X</td>
+                    <td>500</td>
+                    <td>18%</td>
+                    <td>01/01/2023</td>
+                    <td>10 anos</td>
+                    <td>Performando</td>
+                    <td><input type="checkbox" name="rescisao"></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>RJ</td>
+                    <td>Distribuidora Y</td>
+                    <td>1000</td>
+                    <td>18%</td>
+                    <td>01/01/2023</td>
+                    <td>10 anos</td>
+                    <td>Assinado</td>
+                    <td><input type="checkbox" name="rescisao"></td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>MG</td>
+                    <td>Distribuidora Z</td>
+                    <td>750</td>
+                    <td>18%</td>
+                    <td>01/01/2023</td>
+                    <td>10 anos</td>
+                    <td>Aguardando Injeção</td>
+                    <td><input type="checkbox" name="rescisao"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="solicitarRescisao()">Solicitar Rescisão</button>
+        <a href="home.html">Voltar</a>
+    </div>
+    <footer>
+        <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
+        <p>Email: rafael.roberto@grupobcenergia.com.br</p>
+    </footer>
+    <script>
+        function solicitarRescisao() {
+            const checkboxes = document.querySelectorAll('input[name="rescisao"]:checked');
+            if (checkboxes.length > 0) {
+                window.location.href = 'solicitar-rescisao.html';
+            } else {
+                alert('Selecione ao menos uma unidade consumidora para solicitar a rescisão.');
+            }
+        }
+    </script>
+</body>
+</html>
