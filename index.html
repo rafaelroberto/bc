@@ -3,33 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Grupo BC Energia</title>
+    <title>Página Exemplo - Grupo BC Energia</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Entrar</button>
+        <h1>Exemplo de Página</h1>
+        <form action="exemplo.html" method="POST">
+            <!-- Campos do formulário -->
+            <label for="campo">Campo:</label>
+            <input type="text" id="campo" name="campo" required>
+            <button type="submit">Enviar</button>
         </form>
-        <a href="cadastro.html">Ainda não estou cadastrado</a>
+        <a href="index.html">Voltar</a>
     </div>
     <footer>
         <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
         <p>Email: rafael.roberto@grupobcenergia.com.br</p>
     </footer>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            localStorage.setItem('username', username);
-            window.location.href = 'home.html';
-        });
-    </script>
 </body>
 </html>
