@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cadastro - Grupo BC Energia</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
+        <h1>Editar Cadastro</h1>
+        <form action="home.html" method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="data-nascimento">Data de Nascimento:</label>
+            <input type="date" id="data-nascimento" name="data-nascimento" required>
+            <label for="profissao">Profissão:</label>
+            <input type="text" id="profissao" name="profissao" required>
+            <label for="estado-civil">Estado Civil:</label>
+            <select id="estado-civil" name="estado-civil" required>
+                <option value="solteiro">Solteiro</option>
+                <option value="casado">Casado</option>
+                <option value="divorciado">Divorciado</option>
+                <option value="viuvo">Viúvo</option>
+            </select>
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+            <button type="submit">Salvar</button>
+        </form>
+        <a href="home.html">Voltar</a>
+    </div>
+    <footer>
+        <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
+        <p>Email: rafael.roberto@grupobcenergia.com.br</p>
+    </footer>
+</body>
+</html>
