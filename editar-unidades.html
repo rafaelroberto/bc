@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Unidades</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <img src="https://ugc.production.linktr.ee/8XAP2oenQWub6SNbrsBX_S0eZ3C637u4t7pb7?io=true&size=avatar-v3_0" alt="Logo">
+    </header>
+    <main>
+        <h2>Editar Unidades</h2>
+        <div id="unidadesContainer">
+            <!-- Unidades fictícias -->
+            <div class="unidade">
+                <input type="checkbox" id="unidade1" name="unidade1">
+                <label for="unidade1">Unidade 1 - Status: Performando</label>
+            </div>
+            <div class="unidade">
+                <input type="checkbox" id="unidade2" name="unidade2">
+                <label for="unidade2">Unidade 2 - Status: Aguardando Assinatura</label>
+            </div>
+            <div class="unidade">
+                <input type="checkbox" id="unidade3" name="unidade3">
+                <label for="unidade3">Unidade 3 - Status: Assinado</label>
+            </div>
+            <div class="unidade">
+                <input type="checkbox" id="unidade4" name="unidade4">
+                <label for="unidade4">Unidade 4 - Status: Cancelado</label>
+            </div>
+        </div>
+        <button type="button" onclick="solicitarRescisao()">Solicitar Rescisão</button>
+    </main>
+    <script src="assets/js/scripts.js"></script>
+</body>
+</html>
