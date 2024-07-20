@@ -13,27 +13,90 @@
         </header>
         <main>
             <h1>Adicionar Nova Fatura</h1>
-            <form action="home.html" method="GET">
-                <label for="unidade">Número da Unidade Consumidora:</label>
-                <input type="text" id="unidade" name="unidade" required>
-                <label for="codigo">Código do Cliente:</label>
-                <input type="text" id="codigo" name="codigo" required>
+            <form id="novaFaturaForm">
+                <label for="unidade-consumidora">Número da Unidade Consumidora:</label>
+                <input type="text" id="unidade-consumidora" name="unidade-consumidora" required>
+
+                <label for="codigo-cliente">Código do Cliente:</label>
+                <input type="text" id="codigo-cliente" name="codigo-cliente" required>
+
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado" required>
+                    <!-- Lista de estados do Brasil -->
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+
                 <label for="distribuidora">Distribuidora de Energia:</label>
                 <select id="distribuidora" name="distribuidora" required>
-                    <option value="">Selecione</option>
-                    <!-- Adicione as distribuidoras aqui -->
-                    <option value="Eletropaulo">Eletropaulo</option>
-                    <!-- Adicione as demais distribuidoras -->
+                    <option value="CPFL Paulista">CPFL Paulista</option>
+                    <option value="Equatorial Goiás">Equatorial Goiás</option>
+                    <option value="Equatorial Maranhão">Equatorial Maranhão</option>
+                    <!-- Adicione mais distribuidoras conforme necessário -->
                 </select>
-                <label for="cpf-cnpj">Tipo de Documento:</label>
-                <select id="cpf-cnpj" name="cpf-cnpj" required>
-                    <option value="cpf">Pessoa Física (CPF)</option>
-                    <option value="cnpj">Pessoa Jurídica (CNPJ)</option>
-                </select>
+
+                <label for="tipo-pessoa">Tipo de Pessoa:</label>
+                <div>
+                    <input type="radio" id="pessoa-fisica" name="tipo-pessoa" value="fisica" required>
+                    <label for="pessoa-fisica">Pessoa Física</label>
+                    <input type="radio" id="pessoa-juridica" name="tipo-pessoa" value="juridica" required>
+                    <label for="pessoa-juridica">Pessoa Jurídica</label>
+                </div>
+
+                <label for="documento">Documento:</label>
                 <input type="text" id="documento" name="documento" placeholder="CPF ou CNPJ" required>
-                <button type="submit">Adicionar</button>
+
+                <button type="submit">Avançar</button>
+                <a href="home.html">Voltar</a>
             </form>
-            <a href="home.html">Voltar</a>
         </main>
         <footer>
-            <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo
+            <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
+            <p>Email: rafael.roberto@grupobcenergia.com.br</p>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tipoPessoaRadio = document.querySelectorAll('input[name="tipo-pessoa"]');
+            const documentoInput = document.getElementById('documento');
+
+            tipoPessoaRadio.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'fisica') {
+                        documentoInput.setAttribute('placeholder', 'CPF');
+                        documentoInput.setAttribute('pattern', '\\d{11}');
+                    } else {
+                        documentoInput.setAttribute('placeholder', 'CNPJ');
+                        documentoInput.setAttribute('pattern', '\\d{14}');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
