@@ -22,42 +22,16 @@
 
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado" required>
-                    <!-- Lista de estados do Brasil -->
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
+                    <option value="">Selecione o Estado</option>
                     <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
                     <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
+                    <!-- Adicione mais estados conforme necessário -->
                 </select>
 
                 <label for="distribuidora">Distribuidora de Energia:</label>
                 <select id="distribuidora" name="distribuidora" required>
-                    <option value="CPFL Paulista">CPFL Paulista</option>
-                    <option value="Equatorial Goiás">Equatorial Goiás</option>
-                    <option value="Equatorial Maranhão">Equatorial Maranhão</option>
-                    <!-- Adicione mais distribuidoras conforme necessário -->
+                    <option value="">Selecione uma Distribuidora</option>
+                    <!-- Distribuidoras serão carregadas dinamicamente -->
                 </select>
 
                 <label for="tipo-pessoa">Tipo de Pessoa:</label>
@@ -81,6 +55,31 @@
         </footer>
     </div>
     <script>
+        const estadoSelect = document.getElementById('estado');
+        const distribuidoraSelect = document.getElementById('distribuidora');
+
+        // Distribuidoras por estado
+        const distribuidoras = {
+            'GO': ['Equatorial Goiás'],
+            'SP': ['CPFL Paulista', 'Enel Distribuição São Paulo'],
+            // Adicione mais estados e suas distribuidoras conforme necessário
+        };
+
+        // Atualiza distribuidoras com base no estado selecionado
+        estadoSelect.addEventListener('change', function() {
+            const estado = this.value;
+            distribuidoraSelect.innerHTML = '<option value="">Selecione uma Distribuidora</option>';
+            if (estado && distribuidoras[estado]) {
+                distribuidoras[estado].forEach(dist => {
+                    const option = document.createElement('option');
+                    option.value = dist;
+                    option.textContent = dist;
+                    distribuidoraSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Atualiza o campo de documento com base no tipo de pessoa selecionado
         document.addEventListener('DOMContentLoaded', function() {
             const tipoPessoaRadio = document.querySelectorAll('input[name="tipo-pessoa"]');
             const documentoInput = document.getElementById('documento');
