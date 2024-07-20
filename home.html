@@ -8,18 +8,18 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
-        <h1>Olá, Seja bem-vindo, <span id="user-name"></span></h1>
-        <button onclick="window.location.href='editar-cadastro.html'">Editar Cadastro</button>
-        <button onclick="window.location.href='nova-fatura.html'">Adicionar Nova Fatura</button>
-        <button onclick="window.location.href='checar-adesoes.html'">Checar Adesões</button>
+        <header>
+            <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
+        </header>
+        <main>
+            <h1>Bem-vindo ao Grupo BC Energia</h1>
+            <p>Você está na página inicial.</p>
+            <a href="index.html">Voltar para Login</a>
+        </main>
+        <footer>
+            <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
+            <p>Email: rafael.roberto@grupobcenergia.com.br</p>
+        </footer>
     </div>
-    <footer>
-        <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
-        <p>Email: rafael.roberto@grupobcenergia.com.br</p>
-    </footer>
-    <script>
-        document.getElementById('user-name').textContent = localStorage.getItem('username');
-    </script>
 </body>
 </html>
