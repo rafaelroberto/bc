@@ -8,28 +8,24 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
-        <h1>Login</h1>
-        <form id="loginForm">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Entrar</button>
-        </form>
-        <a href="cadastro.html">Ainda não estou cadastrado</a>
+        <header>
+            <img src="https://meudescontonaconta.com.br/images/logo-grupo-bc-energia.png" alt="Logo Grupo BC Energia" class="logo">
+        </header>
+        <main>
+            <h1>Login</h1>
+            <form action="home.html" method="POST">
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+            <a href="cadastro.html">Ainda não estou cadastrado</a>
+        </main>
+        <footer>
+            <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
+            <p>Email: rafael.roberto@grupobcenergia.com.br</p>
+        </footer>
     </div>
-    <footer>
-        <p>Esse aplicativo foi desenvolvido por Rafael Nascimento do Grupo BC Energia</p>
-        <p>Email: rafael.roberto@grupobcenergia.com.br</p>
-    </footer>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            localStorage.setItem('username', username);
-            window.location.href = 'home.html';
-        });
-    </script>
 </body>
 </html>
